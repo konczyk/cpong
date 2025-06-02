@@ -59,6 +59,10 @@ void cleanup(struct State **state) {
             SDL_DestroyWindow(s->window);
             s->window = nullptr;
         }
+        if (s->ball) {
+            free(s->ball);
+            s->ball = nullptr;
+        }
         free(s);
         s = nullptr;
     }

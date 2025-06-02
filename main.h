@@ -27,7 +27,7 @@ struct State {
     bool is_running;
     SDL_FRect player1;
     SDL_FRect player2;
-    SDL_FRect ball;
+    struct Ball *ball;
     const bool *key_state;
 };
 

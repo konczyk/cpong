@@ -3,9 +3,10 @@
 
 #include "main.h"
 
-struct Velocity {
-    float x;
-    float y;
+struct Ball {
+    SDL_FRect rect;
+    float vel_x;
+    float vel_y;
 };
 
 bool init_ball(struct State *s);
