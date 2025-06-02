@@ -11,14 +11,18 @@
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 
-#define FPS 30
-#define FRAME_TARGET_TIME (Uint64)(1000 / FPS)
+#define PLAYER_WIDTH 20
+#define PLAYER_HEIGHT 150
+#define PLAYER_MOVE_STEP 5
 
 struct State {
     SDL_Window *window;
     SDL_Renderer *renderer;
     SDL_Event event;
     bool is_running;
+    SDL_FRect player1;
+    SDL_FRect player2;
+    const bool *key_state;
 };
 
 #endif

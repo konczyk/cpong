@@ -1,4 +1,5 @@
 #include "loop.h"
+#include "player.h"
 
 void run(struct State *s) {
     while (s->is_running) {
@@ -6,7 +7,7 @@ void run(struct State *s) {
         update(s);
         draw(s);
 
-        SDL_Delay(2);
+        SDL_Delay(16);
     }
 }
 
@@ -32,10 +33,14 @@ void process_input(struct State *s) {
 }
 
 void update(struct State *s) {
-
+    update_players(s);
 }
 
 void draw(struct State *s) {
+    SDL_SetRenderDrawColor(s->renderer, 0, 0, 0, 255);
     SDL_RenderClear(s->renderer);
+
+    draw_players(s);
+
     SDL_RenderPresent(s->renderer);
 }
