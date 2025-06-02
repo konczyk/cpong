@@ -13,7 +13,12 @@
 
 #define PLAYER_WIDTH 20
 #define PLAYER_HEIGHT 150
-#define PLAYER_MOVE_STEP 5
+#define PLAYER_INDENT 40
+#define PLAYER_SPEED 5
+
+#define BALL_SIZE 20
+#define BORDER_WIDTH 10
+#define BORDER_INDENT 40
 
 struct State {
     SDL_Window *window;
@@ -22,7 +27,13 @@ struct State {
     bool is_running;
     SDL_FRect player1;
     SDL_FRect player2;
+    SDL_FRect ball;
     const bool *key_state;
+};
+
+struct Velocity {
+    float x;
+    float y;
 };
 
 #endif

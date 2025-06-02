@@ -1,6 +1,7 @@
 #include "main.h"
 #include "init.h"
 #include "player.h"
+#include "ball.h"
 
 bool setup(struct State **state);
 void cleanup(struct State **state);
@@ -34,6 +35,10 @@ bool setup(struct State **state) {
     }
 
     if (!init_players(s)) {
+        return false;
+    }
+
+    if (!init_ball(s)) {
         return false;
     }
 

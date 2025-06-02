@@ -1,5 +1,6 @@
 #include "loop.h"
 #include "player.h"
+#include "ball.h"
 
 void run(struct State *s) {
     while (s->is_running) {
@@ -34,13 +35,18 @@ void process_input(struct State *s) {
 
 void update(struct State *s) {
     update_players(s);
+    update_ball(s);
 }
 
 void draw(struct State *s) {
     SDL_SetRenderDrawColor(s->renderer, 0, 0, 0, 255);
     SDL_RenderClear(s->renderer);
 
+    SDL_SetRenderDrawColor(s->renderer, 255, 255, 255, 255);
+    SDL_RenderLine(s->renderer, WINDOW_WIDTH/2 + BORDER_WIDTH/2, BORDER_INDENT, WINDOW_WIDTH/2 + BORDER_WIDTH/2, WINDOW_HEIGHT - BORDER_INDENT);
+
     draw_players(s);
+    draw_ball(s);
 
     SDL_RenderPresent(s->renderer);
 }
