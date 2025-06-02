@@ -1,3 +1,4 @@
+#include <time.h>
 #include "main.h"
 #include "init.h"
 #include "player.h"
@@ -44,6 +45,7 @@ bool setup(struct State **state) {
 
     s->is_running = true;
     s->key_state = SDL_GetKeyboardState(nullptr);
+    srand(time(NULL));
 
     return true;
 }
@@ -62,6 +64,14 @@ void cleanup(struct State **state) {
         if (s->ball) {
             free(s->ball);
             s->ball = nullptr;
+        }
+        if (s->player1) {
+            free(s->player1);
+            s->player1 = nullptr;
+        }
+        if (s->player2) {
+            free(s->player2);
+            s->player2 = nullptr;
         }
         free(s);
         s = nullptr;

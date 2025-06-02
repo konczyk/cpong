@@ -23,6 +23,9 @@ void process_input(struct State *s) {
                     case SDL_SCANCODE_ESCAPE:
                         s->is_running = false;
                         break;
+                    case SDL_SCANCODE_SPACE:
+                        start_ball(s->ball);
+                        break;
                     default:
                         break;
                 }

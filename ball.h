@@ -10,6 +10,7 @@ struct Ball {
 };
 
 bool init_ball(struct State *s);
+void start_ball(struct Ball *b);
 void draw_ball(struct State *s);
 void update_ball(struct State *s);
 
