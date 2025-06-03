@@ -60,24 +60,24 @@ bool check_ball_hits_player_y(struct Ball *b, struct Player *p) {
 }
 
 void bounce_ball_from_player(struct Ball *b, struct Player *p) {
-    float pcy = p->rect.y + PLAYER_HEIGHT/2;
-    float bcy = b->rect.y + BALL_SIZE/2;
-    bool is_left_player = p->rect.x < WINDOW_WIDTH/2;
+    double pcy = p->rect.y + PLAYER_HEIGHT/2.0;
+    double bcy = b->rect.y + BALL_SIZE/2.0;
+    bool is_left_player = p->rect.x < WINDOW_WIDTH/2.0;
     double rad = 0.0;
 
-    double rad_per_px = (45 * (M_PI / 180)) / (PLAYER_HEIGHT / 2);
+    double deg_per_px = 45.0 / (PLAYER_HEIGHT / 2.0);
 
     if (is_left_player) {
         if (pcy > bcy) {
-            rad = (-45 * (M_PI / 180));
+            rad = (-(pcy-bcy) * deg_per_px * (M_PI / 180));
         } else if (pcy < bcy) {
-            rad = (45 * (M_PI / 180));
+            rad = ((bcy-pcy) * deg_per_px * (M_PI / 180));
         }
     } else {
         if (pcy > bcy) {
-            rad = (-135 * (M_PI / 180));
+            rad = (135 + (pcy-bcy) * deg_per_px * (M_PI / 180));
         } else if (pcy < bcy) {
-            rad = (135 * (M_PI / 180));
+            rad = (-135 - (bcy-pcy) * deg_per_px * (M_PI / 180));
         }
     }
 
