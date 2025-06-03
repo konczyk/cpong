@@ -9,14 +9,20 @@ bool init_ball(struct State *s) {
     }
 
     s->ball->rect = (SDL_FRect) {
-        .x = (int) ((WINDOW_WIDTH-BALL_SIZE/2)/2),
-        .y = (int) ((WINDOW_HEIGHT-BALL_SIZE/2)/2),
+        .x = 0,
+        .y = 0,
         .w = BALL_SIZE,
         .h = BALL_SIZE
     };
-    s->ball->vel_x = s->ball->vel_y = 0;
+    center_ball(s->ball);
 
     return true;
+}
+
+void center_ball(struct Ball *b) {
+    b->rect.x = (int) ((WINDOW_WIDTH-BALL_SIZE/2)/2);
+    b->rect.y = (int) ((WINDOW_HEIGHT-BALL_SIZE/2)/2);
+    b->vel_x = b->vel_y = 0;
 }
 
 void start_ball(struct Ball *b) {
@@ -26,13 +32,26 @@ void start_ball(struct Ball *b) {
 }
 
 void update_ball(struct State *s) {
-    if (s->ball->rect.x <= 0) {
-        // player 2 score
-    } else if (s->ball->rect.x + BALL_SIZE >= WINDOW_WIDTH) {
-        // player 1 score
-    } else if (s->ball->rect.x <= s->player1->rect.x + PLAYER_WIDTH) {
+    // player 2 score
+    if (s->ball->rect.x + BALL_SIZE <= 0) {
+        center_ball(s->ball);
+
+    // player 1 score
+    } else if (s->ball->rect.x >= WINDOW_WIDTH) {
+        center_ball(s->ball);
+
+    // ball bounce from player 1
+    } else if (s->ball->rect.x <= s->player1->rect.x + PLAYER_WIDTH &&
+                s->ball->rect.y <= s->player1->rect.y + PLAYER_HEIGHT &&
+                s->ball->rect.y -BALL_SIZE >= s->player1->rect.y
+    ) {
         s->ball->vel_x *= -1;
-    } else if (s->ball->rect.x >= s->player2->rect.x - BALL_SIZE) {
+
+    // ball bounce from player 2
+    } else if (s->ball->rect.x >= s->player2->rect.x - BALL_SIZE &&
+                s->ball->rect.y <= s->player2->rect.y + PLAYER_HEIGHT &&
+                s->ball->rect.y -BALL_SIZE >= s->player2->rect.y
+    ) {
         s->ball->vel_x *= -1;
     }
     s->ball->rect.x += s->ball->vel_x;
