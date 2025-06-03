@@ -44,11 +44,17 @@ void update_ball(struct State *s) {
         s->ball->vel_y *= -1;
 
     // ball bounces from left player
-    } else if (s->ball->rect.x <= s->playerLeft->rect.x + s->playerLeft->rect.w && check_ball_hits_player_y(s->ball, s->playerLeft)) {
+    } else if (s->ball->rect.x <= s->playerLeft->rect.x + s->playerLeft->rect.w &&
+                s->ball->rect.x > s->playerLeft->rect.x &&
+                check_ball_hits_player_y(s->ball, s->playerLeft)
+    ) {
         bounce_ball_from_player(s->ball, s->playerLeft);
 
     // ball bounces from right player
-    } else if (s->ball->rect.x >= s->playerRight->rect.x - s->ball->rect.w &&  check_ball_hits_player_y(s->ball, s->playerRight)) {
+    } else if (s->ball->rect.x + s->ball->rect.w >= s->playerRight->rect.x &&
+                s->ball->rect.x + s->ball->rect.w < s->playerRight->rect.x + s->playerRight->rect.w &&
+                check_ball_hits_player_y(s->ball, s->playerRight)
+    ) {
         bounce_ball_from_player(s->ball, s->playerRight);
     }
     s->ball->rect.x += s->ball->vel_x;
