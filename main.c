@@ -65,13 +65,13 @@ void cleanup(struct State **state) {
             free(s->ball);
             s->ball = nullptr;
         }
-        if (s->player1) {
-            free(s->player1);
-            s->player1 = nullptr;
+        if (s->playerLeft) {
+            free(s->playerLeft);
+            s->playerLeft = nullptr;
         }
-        if (s->player2) {
-            free(s->player2);
-            s->player2 = nullptr;
+        if (s->playerRight) {
+            free(s->playerRight);
+            s->playerRight = nullptr;
         }
         free(s);
         s = nullptr;

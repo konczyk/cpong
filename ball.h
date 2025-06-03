@@ -10,9 +10,11 @@ struct Ball {
 };
 
 bool init_ball(struct State *s);
-void center_ball(struct Ball *b);
 void start_ball(struct Ball *b);
-void draw_ball(struct State *s);
+void reset_ball(struct Ball *b);
+bool check_ball_hits_player_y(struct Ball *b, struct Player *p);
+void bounce_ball_from_player(struct Ball *b, struct Player *p);
 void update_ball(struct State *s);
+void draw_ball(struct State *s);
 
 #endif //PONG_BALL_H

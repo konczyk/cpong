@@ -26,8 +26,8 @@ struct State {
     SDL_Renderer *renderer;
     SDL_Event event;
     bool is_running;
-    struct Player *player1;
-    struct Player *player2;
+    struct Player *playerLeft;
+    struct Player *playerRight;
     struct Ball *ball;
     const bool *key_state;
 };

@@ -14,15 +14,9 @@ bool init_ball(struct State *s) {
         .w = BALL_SIZE,
         .h = BALL_SIZE
     };
-    center_ball(s->ball);
+    reset_ball(s->ball);
 
     return true;
-}
-
-void center_ball(struct Ball *b) {
-    b->rect.x = (int) ((WINDOW_WIDTH-BALL_SIZE/2)/2);
-    b->rect.y = (int) ((WINDOW_HEIGHT-BALL_SIZE/2)/2);
-    b->vel_x = b->vel_y = 0;
 }
 
 void start_ball(struct Ball *b) {
@@ -31,34 +25,46 @@ void start_ball(struct Ball *b) {
     }
 }
 
+void reset_ball(struct Ball *b) {
+    b->rect.x = (WINDOW_WIDTH - b->rect.w/2)/2;
+    b->rect.y = (WINDOW_HEIGHT - b->rect.h/2)/2;
+    b->vel_x = b->vel_y = 0;
+}
+
 void update_ball(struct State *s) {
-    // player 2 score
-    if (s->ball->rect.x + BALL_SIZE <= 0) {
-        center_ball(s->ball);
+    // left player scores
+    if (s->ball->rect.x >= WINDOW_WIDTH) {
+        reset_ball(s->ball);
 
-    // player 1 score
-    } else if (s->ball->rect.x >= WINDOW_WIDTH) {
-        center_ball(s->ball);
+    // right player scores
+    } else if (s->ball->rect.x + s->ball->rect.w <= 0) {
+        reset_ball(s->ball);
 
-    // ball bounce from player 1
-    } else if (s->ball->rect.x <= s->player1->rect.x + PLAYER_WIDTH &&
-                s->ball->rect.y <= s->player1->rect.y + PLAYER_HEIGHT &&
-                s->ball->rect.y -BALL_SIZE >= s->player1->rect.y
-    ) {
-        s->ball->vel_x *= -1;
+    // ball bounces from left player
+    } else if (s->ball->rect.x <= s->playerLeft->rect.x + s->playerLeft->rect.w && check_ball_hits_player_y(s->ball, s->playerLeft)) {
+        bounce_ball_from_player(s->ball, s->playerLeft);
 
-    // ball bounce from player 2
-    } else if (s->ball->rect.x >= s->player2->rect.x - BALL_SIZE &&
-                s->ball->rect.y <= s->player2->rect.y + PLAYER_HEIGHT &&
-                s->ball->rect.y -BALL_SIZE >= s->player2->rect.y
-    ) {
-        s->ball->vel_x *= -1;
+    // ball bounces from right player
+    } else if (s->ball->rect.x >= s->playerRight->rect.x - s->ball->rect.w &&  check_ball_hits_player_y(s->ball, s->playerRight)) {
+        bounce_ball_from_player(s->ball, s->playerRight);
     }
     s->ball->rect.x += s->ball->vel_x;
     s->ball->rect.y += s->ball->vel_y;
+}
+
+bool check_ball_hits_player_y(struct Ball *b, struct Player *p) {
+    return b->rect.y + b->rect.h >= p->rect.y && b->rect.y <= p->rect.y + p->rect.h;
+}
+
+void bounce_ball_from_player(struct Ball *b, struct Player *p) {
+    b->vel_x *= -1;
+    b->vel_y *= -1;
+    float pcy = p->rect.y + PLAYER_HEIGHT/2;
+    float bcy = b->rect.y + BALL_SIZE/2;
 }
 
 void draw_ball(struct State *s) {
     SDL_SetRenderDrawColor(s->renderer, 255, 255, 255, 255);
     SDL_RenderFillRect(s->renderer, &s->ball->rect);
 }
+
