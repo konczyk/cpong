@@ -32,19 +32,19 @@ bool init_players(struct State *s) {
 
 void update_players(struct State *s) {
     if (s->key_state[SDL_SCANCODE_W] && s->playerLeft->rect.y > 0) {
-        s->playerLeft->rect.y -= SPEED;
+        s->playerLeft->rect.y -= PLAYER_SPEED;
     }
 
     if (s->key_state[SDL_SCANCODE_S] && s->playerLeft->rect.y < WINDOW_HEIGHT - s->playerLeft->rect.h) {
-        s->playerLeft->rect.y += SPEED;
+        s->playerLeft->rect.y += PLAYER_SPEED;
     }
 
     if (s->key_state[SDL_SCANCODE_UP] && s->playerRight->rect.y > 0) {
-        s->playerRight->rect.y -= SPEED;
+        s->playerRight->rect.y -= PLAYER_SPEED;
     }
 
     if (s->key_state[SDL_SCANCODE_DOWN] && s->playerRight->rect.y < WINDOW_HEIGHT - s->playerRight->rect.h) {
-        s->playerRight->rect.y += SPEED;
+        s->playerRight->rect.y += PLAYER_SPEED;
     }
 
 }

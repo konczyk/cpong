@@ -16,7 +16,8 @@
 #define PLAYER_HEIGHT 150
 #define PLAYER_INDENT 40
 
-#define SPEED 5
+#define BALL_SPEED 8
+#define PLAYER_SPEED 5
 
 #define BALL_SIZE 20
 #define BORDER_WIDTH 10

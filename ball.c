@@ -21,7 +21,7 @@ bool init_ball(struct State *s) {
 
 void start_ball(struct Ball *b) {
     if (b->vel_x == 0 && b->vel_y == 0) {
-        b->vel_x = SPEED * (rand() % 2 == 0 ? 1 : -1);
+        b->vel_x = BALL_SPEED * (rand() % 2 == 0 ? 1 : -1);
     }
 }
 
@@ -87,8 +87,8 @@ void bounce_ball_from_player(struct Ball *b, struct Player *p) {
         }
     }
 
-    b->vel_x = SPEED * cos(rad);
-    b->vel_y = SPEED * sin(rad);
+    b->vel_x = BALL_SPEED * cos(rad);
+    b->vel_y = BALL_SPEED * sin(rad);
 }
 
 void draw_ball(struct State *s) {
