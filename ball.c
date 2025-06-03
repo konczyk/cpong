@@ -40,7 +40,7 @@ void update_ball(struct State *s) {
     } else if (s->ball->rect.x + s->ball->rect.w <= 0) {
         reset_ball(s->ball);
 
-    } else if (s->ball->rect.y <= 0 || s->ball->rect.y >= WINDOW_HEIGHT) {
+    } else if (s->ball->rect.y <= 0 || s->ball->rect.y + s->ball->rect.h >= WINDOW_HEIGHT) {
         s->ball->vel_y *= -1;
 
     // ball bounces from left player
