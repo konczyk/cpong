@@ -40,6 +40,9 @@ void update_ball(struct State *s) {
     } else if (s->ball->rect.x + s->ball->rect.w <= 0) {
         reset_ball(s->ball);
 
+    } else if (s->ball->rect.y <= 0 || s->ball->rect.y >= WINDOW_HEIGHT) {
+        s->ball->vel_y *= -1;
+
     // ball bounces from left player
     } else if (s->ball->rect.x <= s->playerLeft->rect.x + s->playerLeft->rect.w && check_ball_hits_player_y(s->ball, s->playerLeft)) {
         bounce_ball_from_player(s->ball, s->playerLeft);
@@ -57,10 +60,29 @@ bool check_ball_hits_player_y(struct Ball *b, struct Player *p) {
 }
 
 void bounce_ball_from_player(struct Ball *b, struct Player *p) {
-    b->vel_x *= -1;
-    b->vel_y *= -1;
     float pcy = p->rect.y + PLAYER_HEIGHT/2;
     float bcy = b->rect.y + BALL_SIZE/2;
+    bool is_left_player = p->rect.x < WINDOW_WIDTH/2;
+    double rad = 0.0;
+
+    double rad_per_px = (45 * (M_PI / 180)) / (PLAYER_HEIGHT / 2);
+
+    if (is_left_player) {
+        if (pcy > bcy) {
+            rad = (-45 * (M_PI / 180));
+        } else if (pcy < bcy) {
+            rad = (45 * (M_PI / 180));
+        }
+    } else {
+        if (pcy > bcy) {
+            rad = (-135 * (M_PI / 180));
+        } else if (pcy < bcy) {
+            rad = (135 * (M_PI / 180));
+        }
+    }
+
+    b->vel_x = SPEED * cos(rad);
+    b->vel_y = SPEED * sin(rad);
 }
 
 void draw_ball(struct State *s) {

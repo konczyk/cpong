@@ -5,8 +5,8 @@
 
 struct Ball {
     SDL_FRect rect;
-    float vel_x;
-    float vel_y;
+    double vel_x;
+    double vel_y;
 };
 
 bool init_ball(struct State *s);

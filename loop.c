@@ -8,7 +8,7 @@ void run(struct State *s) {
         update(s);
         draw(s);
 
-        SDL_Delay(16);
+        SDL_Delay(15);
     }
 }
 

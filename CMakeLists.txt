@@ -9,4 +9,4 @@ add_subdirectory(vendor/SDL3 EXCLUDE_FROM_ALL)
 
 add_executable(${PROJECT_NAME} main.c init.c loop.c player.c ball.c)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE SDL3::SDL3)
+target_link_libraries(${PROJECT_NAME} PRIVATE m SDL3::SDL3)

@@ -5,6 +5,7 @@
 #include "SDL3/SDL_main.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 
 #define SDL_FLAGS SDL_INIT_VIDEO
 #define WINDOW_TITLE "Base"
