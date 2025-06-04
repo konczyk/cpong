@@ -3,7 +3,7 @@
 bool init_players(struct State *s) {
     s->playerLeft = calloc(1, sizeof(struct Player));
     if (!s->playerLeft) {
-        fprintf(stderr, "Error allocating memory");
+        SDL_Log("Error allocating memory");
         return false;
     }
     s->playerLeft->rect = (SDL_FRect) {
@@ -16,7 +16,7 @@ bool init_players(struct State *s) {
 
     s->playerRight = calloc(1, sizeof(struct Player));
     if (!s->playerRight) {
-        fprintf(stderr, "Error allocating memory");
+        SDL_Log("Error allocating memory");
         return false;
     }
     s->playerRight->rect = (SDL_FRect) {

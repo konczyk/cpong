@@ -26,7 +26,7 @@ int main(void) {
 bool setup(struct State **state) {
     *state = calloc(1, sizeof(struct State));
     if (*state == NULL) {
-        fprintf(stderr, "Error allocating memory: %s\n", SDL_GetError());
+        SDL_Log("Error allocating memory: %s\n", SDL_GetError());
         return false;
     }
 

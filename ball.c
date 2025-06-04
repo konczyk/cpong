@@ -4,7 +4,7 @@
 bool init_ball(struct State *s) {
     s->ball = calloc(1, sizeof(struct Ball));
     if (!s->ball) {
-        fprintf(stderr, "Error allocating memory");
+        SDL_Log("Error allocating memory");
         return false;
     }
 
