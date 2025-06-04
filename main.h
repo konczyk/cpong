@@ -9,7 +9,7 @@
 #include <math.h>
 
 #define SDL_FLAGS SDL_INIT_VIDEO
-#define WINDOW_TITLE "Base"
+#define WINDOW_TITLE "CPong"
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
 
@@ -21,10 +21,10 @@
 #define PLAYER_SPEED 5
 
 #define BALL_SIZE 20
-#define BORDER_WIDTH 10
-#define BORDER_INDENT 40
+#define MIDDLE_LINE_WIDTH 10
+#define MIDDLE_LINE_INDENT 40
 
-#define SCORE_FONT_SIZE 100
+#define SCORE_FONT_SIZE 72
 
 struct State {
     SDL_Window *window;

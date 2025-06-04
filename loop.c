@@ -47,7 +47,7 @@ void draw(struct State *s) {
     SDL_RenderClear(s->renderer);
 
     SDL_SetRenderDrawColor(s->renderer, 255, 255, 255, 255);
-    SDL_RenderLine(s->renderer, WINDOW_WIDTH/2. + BORDER_WIDTH/2., BORDER_INDENT, WINDOW_WIDTH/2. + BORDER_WIDTH/2., WINDOW_HEIGHT - BORDER_INDENT);
+    SDL_RenderLine(s->renderer, WINDOW_WIDTH/2. + MIDDLE_LINE_WIDTH / 2., MIDDLE_LINE_INDENT, WINDOW_WIDTH / 2. + MIDDLE_LINE_WIDTH / 2., WINDOW_HEIGHT - MIDDLE_LINE_INDENT);
 
     draw_players(s);
     draw_ball(s);
