@@ -12,6 +12,8 @@
 #define WINDOW_TITLE "CPong"
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
+#define FPS 60
+#define FRAME_TARGET_TIME (1000 / FPS)
 
 #define PLAYER_WIDTH 20
 #define PLAYER_HEIGHT 150
@@ -31,6 +33,12 @@ struct State {
     SDL_Renderer *renderer;
     SDL_Event event;
     bool is_running;
+    uint64_t last_frame_time;
+    uint64_t frame_count_init_time;
+    int frame_count;
+    int avg_fps;
+    bool enable_fps_count;
+
     struct Player *playerLeft;
     struct Player *playerRight;
     struct Ball *ball;

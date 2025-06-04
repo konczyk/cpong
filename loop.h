@@ -8,4 +8,7 @@ void process_input(struct State *s);
 void update(struct State *s);
 void draw(struct State *s);
 
+void delay(struct State *s);
+void count_fps(struct State *s);
+
 #endif //SDL_GAME_H
