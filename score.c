@@ -2,8 +2,8 @@
 #include "player.h"
 
 void draw_scores(struct State *s) {
-    draw_score(s, s->playerLeft->score, WINDOW_WIDTH / 4);
-    draw_score(s, s->playerRight->score, WINDOW_WIDTH - WINDOW_WIDTH / 4);
+    draw_score(s, s->playerLeft->score, WINDOW_WIDTH / 4.0);
+    draw_score(s, s->playerRight->score, WINDOW_WIDTH - WINDOW_WIDTH / 4.0);
 }
 
 void draw_score(struct State *s, int score, float x) {
@@ -17,7 +17,7 @@ void draw_score(struct State *s, int score, float x) {
         .h = surf->h
     };
     SDL_Texture *tex = SDL_CreateTextureFromSurface(s->renderer, surf);
-    SDL_RenderTexture(s->renderer, tex, NULL, &rect);
+    SDL_RenderTexture(s->renderer, tex, nullptr, &rect);
     SDL_DestroySurface(surf);
     SDL_DestroyTexture(tex);
 }

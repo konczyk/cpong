@@ -22,7 +22,7 @@ bool init_sdl(struct State *s) {
         SDL_Log("Error initializing SDL3_ttf: %s\n", SDL_GetError());
         return false;
     }
-    s->font = TTF_OpenFont("data/Roboto-Regular.ttf", SCORE_FONT_SIZE);
+    s->font = TTF_OpenFont("data/font.ttf", SCORE_FONT_SIZE);
     if (!s->font) {
         SDL_Log("Error opening font: %s\n", SDL_GetError());
     }

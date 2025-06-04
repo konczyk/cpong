@@ -24,7 +24,7 @@
 #define BORDER_WIDTH 10
 #define BORDER_INDENT 40
 
-#define SCORE_FONT_SIZE 60
+#define SCORE_FONT_SIZE 100
 
 struct State {
     SDL_Window *window;
