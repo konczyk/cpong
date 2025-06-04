@@ -18,5 +18,14 @@ bool init_sdl(struct State *s) {
         return false;
     }
 
+    if (!TTF_Init()) {
+        fprintf(stderr, "Error initializing SDL3_ttf: %s\n", SDL_GetError());
+        return false;
+    }
+    s->font = TTF_OpenFont("data/Roboto-Regular.ttf", SCORE_FONT_SIZE);
+    if (!s->font) {
+        fprintf(stderr, "Error opening font: %s\n", SDL_GetError());
+    }
+
     return true;
 }

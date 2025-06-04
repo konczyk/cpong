@@ -35,10 +35,12 @@ void update_ball(struct State *s) {
     // left player scores
     if (s->ball->rect.x >= WINDOW_WIDTH) {
         reset_ball(s->ball);
+        s->playerLeft->score++;
 
     // right player scores
     } else if (s->ball->rect.x + s->ball->rect.w <= 0) {
         reset_ball(s->ball);
+        s->playerRight->score++;
 
     } else if (s->ball->rect.y <= 0 || s->ball->rect.y + s->ball->rect.h >= WINDOW_HEIGHT) {
         s->ball->vel_y *= -1;

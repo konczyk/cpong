@@ -3,6 +3,7 @@
 
 #include "SDL3/SDL.h"
 #include "SDL3/SDL_main.h"
+#include "SDL3_ttf/SDL_ttf.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -23,6 +24,8 @@
 #define BORDER_WIDTH 10
 #define BORDER_INDENT 40
 
+#define SCORE_FONT_SIZE 60
+
 struct State {
     SDL_Window *window;
     SDL_Renderer *renderer;
@@ -32,6 +35,7 @@ struct State {
     struct Player *playerRight;
     struct Ball *ball;
     const bool *key_state;
+    struct TTF_Font *font;
 };
 
 #endif

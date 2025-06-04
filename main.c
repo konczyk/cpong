@@ -3,6 +3,7 @@
 #include "init.h"
 #include "player.h"
 #include "ball.h"
+#include "loop.h"
 
 bool setup(struct State **state);
 void cleanup(struct State **state);
@@ -73,8 +74,13 @@ void cleanup(struct State **state) {
             free(s->playerRight);
             s->playerRight = nullptr;
         }
+        if (s->font) {
+            TTF_CloseFont(s->font);
+            s->font = nullptr;
+        }
         free(s);
         s = nullptr;
     }
     SDL_Quit();
+    TTF_Quit();
 }
