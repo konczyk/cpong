@@ -3,10 +3,17 @@ project(cpong C)
 
 set(CMAKE_C_STANDARD 23)
 
-file(COPY data DESTINATION ${CMAKE_BINARY_DIR})
+option(VENDOR "Use vendor libraries" OFF)
 
-add_subdirectory(vendor/SDL3-3.2.16 EXCLUDE_FROM_ALL)
-add_subdirectory(vendor/SDL3_ttf-3.2.2 EXCLUDE_FROM_ALL)
+if(VENDOR)
+    add_subdirectory(vendor/SDL3 EXCLUDE_FROM_ALL)
+    add_subdirectory(vendor/SDL3_ttf EXCLUDE_FROM_ALL)
+else()
+    find_package(SDL3 REQUIRED CONFIG REQUIRED COMPONENTS SDL3-shared)
+    find_package(SDL3_ttf REQUIRED CONFIG REQUIRED COMPONENTS SDL3_ttf-shared)
+endif()
+
+file(COPY data DESTINATION ${CMAKE_BINARY_DIR})
 
 set(SOURCES
         main.c
